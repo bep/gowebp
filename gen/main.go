@@ -60,10 +60,10 @@ func main() {
 			filename = strings.TrimPrefix(filename, "/")
 			target := filepath.Join(dstDir, fi.Name())
 
-			if err := os.WriteFile(target, []byte(fmt.Sprintf(`#ifndef LIBWEBP_NO_SRC
+			if err := os.WriteFile(target, fmt.Appendf(nil, `#ifndef LIBWEBP_NO_SRC
 #include "../../libwebp_src/%s"
 #endif
-`, filename)), 0o644); err != nil {
+`, filename), 0o644); err != nil {
 				return err
 			}
 
